@@ -38,6 +38,39 @@
             <input type="text"  name="observaciones" placeholder="Observaciones">
         <input type="submit">
     </form>
+    <form class="formdos" action="" method="get">
+        <input type="text" name="busqueda" placeholder="Busca por sala o si deseas borrar la busqueda haz click en el buscador y luego enter"><br>
+        <input type="submit" name="enviar" value="buscar"> 
+    </form>
+
+    <br><br><br>
+
+    <?php
+
+    if(isset($_GET['enviar'])) {
+        $busqueda = $_GET['busqueda'];
+
+        $consulta = $con->query("SELECT * FROM salas WHERE sala LIKE '$busqueda'");
+
+        while ($row = $consulta->fetch_array()) {
+            echo '<tbody><table>';
+            echo '<th>';
+            echo $row['id'].'<br>';
+            echo $row['fecha_real_clase'].'<br>';
+            echo $row['hora_desde'].'<br>';
+            echo $row['hora_hasta'].'<br>';
+            echo $row['sala'].'<br>';
+            echo $row['tipo_evento'].'<br>';
+            echo $row['profesor_resp'].'<br>';
+            echo $row['quien_solicita'].'<br>';
+            echo $row['fecha_solicitud'].'<br>';
+            echo $row['telefono_con'].'<br>';
+            echo $row['material_sala'].'<br>';
+            echo $row['observaciones'].'</th><br></table></tbody>';
+            
+        }
+    }
+    ?>
     <table>
             <tbody>
                 <?php
